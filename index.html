@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Coberturas Carpintería</title>
+
+<!-- ═══ PWA ═══ -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#E8112D">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Carpintería">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Carpintería">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="./icons/icon-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<meta name="msapplication-TileImage" content="./icons/icon-144.png">
+<meta name="msapplication-TileColor" content="#E8112D">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-16.png">
+<link rel="shortcut icon" href="./favicon.ico">
+<meta name="description" content="Guía para consultar coberturas de carpintería para reparadores colaboradores">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8112D;
+    --red-dark: #B50021;
+    --green: #1B7A45;
+    --green-bg: #F0FAF4;
+    --green-border: #A8DFC0;
+    --red-bg: #FFF0F2;
+    --red-border: #FFAAB5;
+    --blue: #1565C0;
+    --blue-bg: #EEF4FF;
+    --blue-border: #BAD0F5;
+    --grey: #607080;
+    --grey-bg: #F4F6F8;
+    --grey-border: #C8D4DC;
+    --yellow-bg: #FFFBEA;
+    --yellow-border: #F5C842;
+    --yellow-text: #7A5800;
+    --white: #FFFFFF;
+    --body-bg: #F8F9FB;
+    --text: #1A2330;
+    --text-light: #4A5568;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--body-bg);
+    color: var(--text);
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  /* ══ SCREEN SYSTEM ══ */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+  /* ══════════════════════════
+     HOME SCREEN
+  ══════════════════════════ */
+
+  .home-wrap { padding: 18px 10px 28px; }
+
+  .home-title-card {
+    background: #fff;
+    border: 1.5px solid var(--red);
+    border-left: 4px solid var(--red);
+    border-radius: 14px;
+    padding: 22px 20px 18px;
+    box-shadow: -4px 4px 0 rgba(232,17,45,0.14), 0 1px 8px rgba(0,0,0,0.05);
+    margin: 0 -4px 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+  }
+  .home-title-card h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--red);
+    letter-spacing: -0.4px;
+    line-height: 1.15;
+  }
+  .home-title-card p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  .menu-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 11px;
+  }
+
+  /* 2×2 grid */
+  .menu-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .menu-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 18px 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: center;
+    overflow: hidden;
+  }
+  .menu-card:active { transform: scale(0.955); }
+
+  .card-red    { background: #FFF7F7; border: 1px solid #F0A0A8; border-left: 3px solid var(--red); }
+  .card-green  { background: #F4FAF8; border: 1px solid #86C8A0; border-left: 3px solid #1B7A45; }
+  .card-blue   { background: #F5F9FF; border: 1px solid #90B8E8; border-left: 3px solid #1565C0; }
+  .card-teal   { background: #F0FAFA; border: 1px solid #86C8BF; border-left: 3px solid #00796B; }
+  .card-purple { background: #F8F5FF; border: 1px solid #C3A8E0; border-left: 3px solid #6A1B9A; }
+  .card-orange { background: #FFF8F3; border: 1px solid #E8B899; border-left: 3px solid #E65100; }
+  .card-brown  { background: #FBF8F5; border: 1px solid #C8A880; border-left: 3px solid #795548; }
+  .card-amber  { background: #FFFCF0; border: 1px solid #E8C840; border-left: 3px solid #F57F17; }
+
+  .menu-card-icon { display: flex; justify-content: center; margin-bottom: 10px; }
+  .menu-card-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13.5px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+  .card-red    .menu-card-title { color: var(--red); }
+  .card-green  .menu-card-title { color: #1B7A45; }
+  .card-blue   .menu-card-title { color: #1565C0; }
+  .card-teal   .menu-card-title { color: #00796B; }
+  .card-purple .menu-card-title { color: #6A1B9A; }
+  .card-orange .menu-card-title { color: #E65100; }
+  .card-brown  .menu-card-title { color: #795548; }
+  .card-amber  .menu-card-title { color: #F57F17; }
+
+  /* Aviso legal */
+  .aviso-card {
+    margin-top: 18px;
+    background: var(--yellow-bg);
+    border: 1.5px solid var(--yellow-border);
+    border-left: 4px solid var(--yellow-border);
+    border-radius: 14px;
+    padding: 13px 15px;
+    display: flex;
+    gap: 11px;
+    align-items: flex-start;
+    box-shadow: -4px 4px 0 rgba(245,200,66,0.20);
+  }
+  .aviso-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .aviso-text { font-size: 11.5px; color: var(--yellow-text); line-height: 1.55; font-weight: 600; }
+  .aviso-text strong { display: block; font-size: 11px; font-weight: 800; margin-bottom: 3px; letter-spacing: 0.3px; }
+  .aviso-text em { display: block; margin-top: 5px; font-style: normal; font-weight: 700; opacity: 0.72; font-size: 10.5px; }
+
+  /* ══════════════════════════
+     CONTENT SCREENS
+  ══════════════════════════ */
+
+  .page-content { padding: 14px 10px 36px; }
+
+  .page-title-card {
+    background: #fff;
+    border: 1.5px solid var(--red);
+    border-left: 4px solid var(--red);
+    border-radius: 14px;
+    padding: 14px 16px 13px;
+    margin: 0 -2px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: -4px 4px 0 rgba(232,17,45,0.14), 0 1px 8px rgba(0,0,0,0.05);
+  }
+  .page-title-card h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1.2;
+  }
+  .page-title-card p { font-size: 13px; color: var(--text-light); margin-top: 3px; }
+
+  .ptc-back {
+    width: 34px; height: 34px;
+    border: 1.5px solid rgba(232,17,45,0.25);
+    border-left: 3px solid var(--red);
+    background: #FFF4F5;
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.16s;
+    box-shadow: -3px 3px 0 rgba(232,17,45,0.14);
+  }
+  .ptc-back:active { transform: scale(0.91); background: var(--red-bg); }
+  .ptc-back svg { width: 18px; height: 18px; fill: none; stroke: var(--red); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .page-title-card .ptc-icon { flex-shrink: 0; }
+
+  /* Section cards */
+  .section-card { border-radius: 14px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+
+  .section-card-header {
+    padding: 13px 16px;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; user-select: none;
+  }
+  .section-card-header h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px; font-weight: 800; flex: 1; line-height: 1.3;
+  }
+  .chevron { font-size: 13px; opacity: 0.75; transition: transform 0.22s; }
+  .section-card.open .chevron { transform: rotate(180deg); }
+  .section-card-body { display: none; }
+  .section-card.open .section-card-body { display: block; }
+
+  .card-cobertura { background: var(--green-bg); border: 2px solid var(--green-border); }
+  .card-cobertura .section-card-header { background: var(--green); }
+  .card-cobertura .section-card-header h2, .card-cobertura .chevron { color: #fff; }
+  .card-cobertura .section-card-body { padding: 14px 16px; }
+
+  .card-exclusion { background: var(--red-bg); border: 2px solid var(--red-border); }
+  .card-exclusion .section-card-header { background: var(--red); }
+  .card-exclusion .section-card-header h2, .card-exclusion .chevron { color: #fff; }
+  .card-exclusion .section-card-body { padding: 14px 16px; }
+
+  .card-info { background: var(--blue-bg); border: 2px solid var(--blue-border); }
+  .card-info .section-card-header { background: var(--blue); }
+  .card-info .section-card-header h2, .card-info .chevron { color: #fff; }
+  .card-info .section-card-body { padding: 14px 16px; }
+
+  .card-neutral { background: var(--grey-bg); border: 2px solid var(--grey-border); }
+  .card-neutral .section-card-header { background: #607080; }
+  .card-neutral .section-card-header h2, .card-neutral .chevron { color: #fff; }
+  .card-neutral .section-card-body { padding: 14px 16px; }
+
+  .item-list { list-style: none; }
+  .item-list li {
+    padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+    font-size: 15px; line-height: 1.6; color: var(--text);
+    display: flex; gap: 9px; align-items: flex-start;
+  }
+  .item-list li:last-child { border-bottom: none; }
+  .li-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+
+  .badge { display: inline-block; font-size: 10.5px; font-weight: 800; padding: 2px 9px; border-radius: 20px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .badge-green  { background: var(--green); color: #fff; }
+  .badge-red    { background: var(--red);   color: #fff; }
+  .badge-yellow { background: #E5A020;      color: #fff; }
+
+  .poliza-item {
+    background: #fff; border-radius: 12px; padding: 13px 14px;
+    margin-bottom: 10px; border-left: 5px solid var(--green);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.07);
+  }
+  .poliza-item.excl { border-left-color: var(--red); }
+  .poliza-item.info { border-left-color: var(--blue); }
+  .poliza-item h3 { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; margin-bottom: 5px; }
+  .poliza-item p { font-size: 14.5px; color: var(--text-light); line-height: 1.6; }
+
+  .warn-box {
+    background: #FFF8E1; border: 1.5px solid #FFD54F; border-radius: 12px;
+    padding: 11px 13px; margin-bottom: 10px; font-size: 14.5px; color: #5D4037;
+    line-height: 1.6; display: flex; gap: 9px; align-items: flex-start;
+  }
+  .info-box {
+    background: #EBF5FB; border: 1.5px solid #85C1E9; border-radius: 12px;
+    padding: 11px 13px; margin-bottom: 10px; font-size: 14.5px; color: #154360;
+    line-height: 1.6; display: flex; gap: 9px; align-items: flex-start;
+  }
+  .red-box {
+    background: var(--red-bg); border: 1.5px solid var(--red-border); border-radius: 12px;
+    padding: 11px 13px; margin-bottom: 10px; font-size: 14.5px; color: var(--red-dark);
+    line-height: 1.6; display: flex; gap: 9px; align-items: flex-start;
+  }
+  .wi { font-size: 19px; flex-shrink: 0; }
+
+  .step-card {
+    background: #fff; border-radius: 12px; padding: 13px 14px;
+    margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.07);
+  }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 900;
+    flex-shrink: 0; color: #fff;
+  }
+  .step-num.green { background: var(--green); }
+  .step-num.red   { background: var(--red); }
+  .step-num.blue  { background: var(--blue); }
+  .step-content h3 { font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; margin-bottom: 3px; }
+  .step-content p  { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+  .tag { font-size: 11px; font-weight: 700; color: var(--green); background: var(--green-bg); padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 5px; }
+  .tag.red  { color: var(--red);  background: var(--red-bg); }
+  .tag.blue { color: var(--blue); background: var(--blue-bg); }
+
+  ::-webkit-scrollbar { display: none; }
+  * { scrollbar-width: none; }
+
+  /* Red bottom notice */
+  .red-notice {
+    background: #fff;
+    border: 1.5px solid var(--red);
+    border-left: 4px solid var(--red);
+    border-radius: 14px;
+    padding: 13px 15px;
+    display: flex;
+    gap: 11px;
+    align-items: flex-start;
+    box-shadow: -4px 4px 0 rgba(232,17,45,0.14);
+    margin-top: 14px;
+  }
+  .red-notice-text { font-size: 13.5px; color: var(--text); line-height: 1.6; font-weight: 600; }
+  .red-notice-text strong { color: var(--red); }
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════ HOME ═══════════ -->
+<div class="screen active" id="screen-home">
+  <div class="home-wrap">
+
+    <!-- Title card -->
+    <div class="home-title-card">
+      <div style="width:100%;text-align:center;">
+        <h1>Coberturas Carpintería</h1>
+        <p>Guía para reparadores colaboradores</p>
+      </div>
+    </div>
+
+    <div class="menu-label">Selecciona una categoría</div>
+
+    <!-- 2×2 grid (4 cards → 8 total) -->
+    <div class="menu-grid-4">
+
+      <!-- Comprobaciones previas — grey/brown -->
+      <div class="menu-card card-brown" onclick="goTo('screen-comprobaciones')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">🔍</span></div>
+        <div class="menu-card-title">Comprobaciones Previas</div>
+      </div>
+
+      <!-- Daños por agua — red -->
+      <div class="menu-card card-red" onclick="goTo('screen-agua')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">💧</span></div>
+        <div class="menu-card-title">Daños por Agua</div>
+      </div>
+
+      <!-- Exclusión total — red dark -->
+      <div class="menu-card" style="background:#FFF5F5;border:1px solid #E88090;border-left:3px solid #C62828;" onclick="goTo('screen-exclusion')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">🚫</span></div>
+        <div class="menu-card-title" style="color:#C62828;">Casos sin cobertura</div>
+      </div>
+
+      <!-- Daños estéticos — purple -->
+      <div class="menu-card card-purple" onclick="goTo('screen-esteticos')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">🎨</span></div>
+        <div class="menu-card-title">Daños Estéticos</div>
+      </div>
+
+      <!-- Bricolaje — teal -->
+      <div class="menu-card card-teal" onclick="goTo('screen-bricolaje')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">🛠️</span></div>
+        <div class="menu-card-title">Bricolaje del Hogar</div>
+      </div>
+
+      <!-- Todo Riesgo Accidental — blue -->
+      <div class="menu-card card-blue" onclick="goTo('screen-tra')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">💥</span></div>
+        <div class="menu-card-title">Todo Riesgo Accidental</div>
+      </div>
+
+      <!-- Fenómenos Atmosféricos — orange -->
+      <div class="menu-card card-orange" onclick="goTo('screen-fenomenos')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">🌧️</span></div>
+        <div class="menu-card-title">Fenómenos Atmosféricos</div>
+      </div>
+
+      <!-- Tarifa — amber -->
+      <div class="menu-card card-amber" onclick="goTo('screen-tarifa')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1;">📝</span></div>
+        <div class="menu-card-title">Aplicación de la Tarifa</div>
+      </div>
+
+    </div><!-- /menu-grid-4 -->
+
+    <!-- INFO BUTTON -->
+    <div style="display:flex;justify-content:flex-end;margin-top:18px;margin-bottom:10px;">
+      <button onclick="document.getElementById('info-modal').style.display='flex'"
+        style="background:#1A2330;color:#fff;border:none;border-radius:20px;padding:6px 18px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.3px;box-shadow:0 2px 8px rgba(0,0,0,0.18);">
+        Info
+      </button>
+    </div>
+
+    <!-- AVISO LEGAL -->
+    <div class="aviso-card">
+      <span class="aviso-icon">⚠️</span>
+      <div class="aviso-text">
+        <strong>AVISO LEGAL</strong>
+        Herramienta de consulta con fines informativos, de uso exclusivo para reparadores colaboradores. No recoge datos ni interactúa con sistemas corporativos. No sustituye los canales o herramientas oficiales. De uso voluntario.
+        <em>Ante cualquier duda, consulta siempre con el departamento técnico.</em>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /screen-home -->
+
+<!-- ═══ MODAL INFO ═══ -->
+<div id="info-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:999;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;border-radius:18px;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.22);overflow:hidden;position:relative;">
+    <div style="background:#E8112D;padding:16px 20px 14px;display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;">📱 Instalar la app</span>
+      <button onclick="document.getElementById('info-modal').style.display='none'"
+        style="background:rgba(255,255,255,0.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;">✕</button>
+    </div>
+    <div style="padding:18px 20px 20px;">
+      <div style="margin-bottom:14px;display:flex;gap:13px;align-items:flex-start;">
+        <span style="font-size:22px;flex-shrink:0;">🤖</span>
+        <div>
+          <div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#1A2330;margin-bottom:3px;">Android (Chrome)</div>
+          <div style="font-size:13.5px;color:#4A5568;line-height:1.5;">Abre la URL → menú ⋮ → <em>"Añadir a pantalla de inicio"</em></div>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;display:flex;gap:13px;align-items:flex-start;">
+        <span style="font-size:22px;flex-shrink:0;">🍎</span>
+        <div>
+          <div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#1A2330;margin-bottom:3px;">iOS (Safari)</div>
+          <div style="font-size:13.5px;color:#4A5568;line-height:1.5;">Abre la URL → botón compartir □↑ → <em>"Añadir a pantalla de inicio"</em></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:13px;align-items:flex-start;">
+        <span style="font-size:22px;flex-shrink:0;">🖥️</span>
+        <div>
+          <div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#1A2330;margin-bottom:3px;">PC (Chrome / Edge)</div>
+          <div style="font-size:13.5px;color:#4A5568;line-height:1.5;">Abre la URL → icono ⊕ en la barra de direcciones → <em>"Instalar"</em></div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding-top:13px;border-top:1px solid #E8ECEF;">
+        <div style="font-size:13px;color:#607080;text-align:center;font-style:italic;">💡 La app funciona sin conexión después de la primera carga</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ COMPROBACIONES PREVIAS ═══════════ -->
+<div class="screen" id="screen-comprobaciones">
+  <div class="page-content">
+
+    <div class="page-title-card" style="border-color:#795548;border-left-color:#795548;box-shadow:-4px 4px 0 rgba(121,85,72,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(121,85,72,0.25);border-left-color:#795548;background:#FBF8F5;box-shadow:-3px 3px 0 rgba(121,85,72,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#795548;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <rect x="8" y="6" width="26" height="32" rx="5" fill="#795548" opacity="0.10" stroke="#795548" stroke-width="2"/>
+          <path d="M14 15 L28 15" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+          <path d="M14 21 L28 21" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+          <path d="M14 27 L22 27" stroke="#795548" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="31" cy="32" r="6" fill="#795548" opacity="0.2" stroke="#795548" stroke-width="1.8"/>
+          <path d="M28.5 32 L30 33.5 L33.5 30" stroke="#795548" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div><h1 style="color:#795548;">Comprobaciones Previas</h1><p>Antes de asumir cualquier reparación</p></div>
+    </div>
+
+    <div class="section-card card-neutral open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🔍</span><h2>Puntos clave a verificar</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <div class="warn-box"><span class="wi">📷</span><div>Presta atención a expedientes <strong>sin fotos</strong>: puede que seas el primero en intervenir y el daño puede no tener cobertura.</div></div>
+
+        <div class="poliza-item info" style="border-left-color:#795548;">
+          <h3>❓ Pregunta la causa y fecha</h3>
+          <p>Comprueba cuál fue la causa de los daños y la <strong>fecha de contratación de la póliza</strong>. Si no se ha reparado ninguna tubería de agua, consulta antes de reparar.</p>
+        </div>
+
+        <div class="poliza-item info" style="border-left-color:#795548;">
+          <h3>🚫 No asumas directamente</h3>
+          <p>Aunque el fontanero te haya abierto el servicio, verifica si el daño es compatible con lo indicado en "trabajo a realizar" y valora la cobertura con tus criterios profesionales.</p>
+        </div>
+
+        <div class="poliza-item info" style="border-left-color:#795548;">
+          <h3>🔧 Mal estado del elemento</h3>
+          <p>Si no se puede reparar por el mal estado, <strong>no se repara</strong>. Se propondrá una indemnización por el importe de la reparación.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ DAÑOS POR AGUA ═══════════ -->
+<div class="screen" id="screen-agua">
+  <div class="page-content">
+
+    <div class="page-title-card">
+      <button class="ptc-back" onclick="goBack()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <path d="M21 5C21 5 9 17 9 25a12 12 0 0024 0C33 17 21 5 21 5z" fill="#E8112D" opacity="0.13" stroke="#E8112D" stroke-width="2"/>
+          <path d="M15 27c0 3.3 2.7 6 6 6" stroke="#E8112D" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div><h1>Daños por Agua</h1><p>Coberturas según modalidad de póliza</p></div>
+    </div>
+
+    <div class="section-card card-cobertura open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">✅</span><h2>¿Qué se cubre por modalidad?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <div class="poliza-item"><h3>🏠 Vivienda particular</h3><p>Reparamos los daños que ocasionen las tuberías fijas que dan servicio a la vivienda, aunque estén fuera de ella. En viviendas unifamiliares, las conducciones que causan el daño tienen que estar dentro de sus límites.</p></div>
+        <div class="poliza-item"><h3>🏪 Comercios</h3><p>Reparamos los daños que ocasionen las tuberías fijas de agua que dan servicio solo al comercio y se encuentren dentro del perímetro de éste.</p></div>
+        <div class="poliza-item"><h3>🏢 Comunidad</h3><p>Reparamos los daños que ocasionen las tuberías de agua fijas comunitarias.</p><p style="margin-top:8px;">También se consideran comunitarias las conducciones e instalaciones de calefacción central o comunitaria, aunque estén dentro de espacios privativos.</p></div>
+        <div class="poliza-item"><h3>🏢+ Comunidad Garantía Amplia</h3><p>Reparamos los daños que ocasionen las tuberías de agua fijas del edificio.</p><p style="margin-top:6px;font-size:13.5px;color:#c62828;font-weight:700;">⚠️ No tienen cobertura los daños al contenido (muebles) de las viviendas privadas cuando la avería pertenecía a instalación de una de las viviendas.</p></div>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🚫</span><h2>Exclusiones</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>No se cubre la reparación de los daños por defectos de instalación.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños por uso, desgaste o paso del tiempo (no por avería).</span></li>
+          <li><span class="li-icon">❌</span><span>Pérdida de material por roces.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños en muebles junto a bañeras/platos de ducha sin protección frente a salpicaduras.</span></li>
+          <li><span class="li-icon">❌</span><span>Derrame accidental: caída de cubo, recipiente o peceras sin conexión fija de agua.</span></li>
+          <li><span class="li-icon">❌</span><span>Líquidos que no sean agua (p.ej. mascotas).</span></li>
+          <li><span class="li-icon">❌</span><span>Filtraciones o goteras de agua de lluvia, canalones o bajantes de pluviales vistas o por defectos en el sellado de ventanas o puertas.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños provocados por condensación.</span></li>
+          <li><span class="li-icon">❌</span><span>Humedades por capilaridad del terreno.</span></li>
+          <li><span class="li-icon">❌</span><span>Roturas de tuberías por congelación (excepto pólizas Hogar Platino).</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="red-notice">
+      <span style="font-size:20px;flex-shrink:0;">🔴</span>
+      <div class="red-notice-text">En caso de exclusión, si se puede reparar, ofrece <strong>Asistencia</strong>. Si el cliente la acepta, solicítala desde <strong>Appcol por IPS</strong>. El servicio lo paga el cliente.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ EXCLUSIÓN TOTAL ═══════════ -->
+<div class="screen" id="screen-exclusion">
+  <div class="page-content">
+
+    <div class="page-title-card" style="border-color:#C62828;border-left-color:#C62828;box-shadow:-4px 4px 0 rgba(198,40,40,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(198,40,40,0.25);border-left-color:#C62828;background:#FFF5F5;box-shadow:-3px 3px 0 rgba(198,40,40,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#C62828;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon" style="font-size:32px;line-height:1;">🚫</div>
+      <div><h1 style="color:#C62828;">Casos sin cobertura</h1><p>Exclusiones de la póliza</p></div>
+    </div>
+
+    <div class="section-card card-exclusion open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🚫</span><h2>Casos excluidos</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>No se cubre la reparación de los daños por defectos de instalación.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños por uso, desgaste o paso del tiempo (no por avería).</span></li>
+          <li><span class="li-icon">❌</span><span>Pérdida de material por roces.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños en muebles junto a bañeras/platos de ducha sin protección frente a salpicaduras.</span></li>
+          <li><span class="li-icon">❌</span><span>Derrame accidental: caída de cubo, recipiente o peceras sin conexión fija de agua.</span></li>
+          <li><span class="li-icon">❌</span><span>Líquidos que no sean agua (p.ej. mascotas).</span></li>
+          <li><span class="li-icon">❌</span><span>Filtraciones o goteras de agua de lluvia, canalones o bajantes de pluviales vistas o por defectos en el sellado de ventanas o puertas.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños provocados por condensación.</span></li>
+          <li><span class="li-icon">❌</span><span>Humedades por capilaridad del terreno.</span></li>
+          <li><span class="li-icon">❌</span><span>Roturas de tuberías por congelación (excepto pólizas Hogar Platino).</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="red-notice">
+      <span style="font-size:20px;flex-shrink:0;">🧰</span>
+      <div class="red-notice-text">En caso de exclusión, si se puede reparar, ofrece <strong>Asistencia</strong>. Si el cliente la acepta, solicítala desde <strong>Appcol por IPS</strong>. El servicio lo paga el cliente.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ DAÑOS ESTÉTICOS ═══════════ -->
+<div class="screen" id="screen-esteticos">
+  <div class="page-content">
+
+    <div class="page-title-card" style="border-color:#6A1B9A;border-left-color:#6A1B9A;box-shadow:-4px 4px 0 rgba(106,27,154,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(106,27,154,0.25);border-left-color:#6A1B9A;background:#F8F5FF;box-shadow:-3px 3px 0 rgba(106,27,154,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#6A1B9A;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <rect x="8" y="13" width="26" height="20" rx="5" fill="#6A1B9A" opacity="0.10" stroke="#6A1B9A" stroke-width="2"/>
+          <path d="M10 10 L32 10" stroke="#6A1B9A" stroke-width="2" stroke-linecap="round"/>
+          <path d="M15 20 L27 20" stroke="#6A1B9A" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M15 25 L27 25" stroke="#6A1B9A" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="32" cy="10" r="6" fill="#6A1B9A" opacity="0.20" stroke="#6A1B9A" stroke-width="1.5"/>
+          <path d="M29.5 10 L31 11.5 L34.5 8" stroke="#6A1B9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div><h1 style="color:#6A1B9A;">Daños Estéticos</h1><p>Cobertura de estética en la misma estancia</p></div>
+    </div>
+
+    <div class="section-card card-cobertura open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">✅</span><h2>¿Qué se cubre?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <div class="info-box"><span class="wi">💡</span><span>Si al reparar un daño cubierto no se puede mantener la misma estética dentro de la estancia afectada, se cubrirá el cambio o reparación del resto de elementos de esa estancia.</span></div>
+        <div class="poliza-item">
+          <h3>📋 Condiciones</h3>
+          <p>Sólo <strong>dentro de la misma estancia</strong> y sin superar el <strong>límite del capital contratado</strong>. No se harán diferencias si la estética se rompe por falta del material o por el paso del tiempo.</p>
+        </div>
+        <div class="poliza-item">
+          <h3>🚪 Puertas de paso</h3>
+          <p>Conjunto de puertas que estén en la misma estancia, pasillo o distribuidor de la vivienda.</p>
+        </div>
+        <div class="poliza-item">
+          <h3>🍳 Encimeras de cocina</h3>
+          <p>Como daño directo: tabla horizontal y copete. Como complemento estético: islas, barras, salpicaderos, zócalos, costados, cascadas, etc.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🚫</span><h2>No se aplican daños estéticos</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>En elementos no afectados directamente por la avería.</span></li>
+          <li><span class="li-icon">❌</span><span>En elementos en habitaciones o estancias distintas al bien dañado.</span></li>
+          <li><span class="li-icon">❌</span><span>En viviendas perjudicadas (no aseguradas).</span></li>
+          <li><span class="li-icon">❌</span><span>Cuando el coste excede el límite contratado y el asegurado no asume el sobrecoste.</span></li>
+        </ul>
+        <div class="warn-box" style="margin-top:8px;">
+          <span class="wi">📝</span>
+          <div>Si supera el límite, indica: <em>"El coste del daño estético supera el límite contratado y el asegurado no quiere asumir el sobrecoste, por lo que no se puede reparar."</em> Pasa valoración separando el coste del daño directo del estético.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ BRICOLAJE ═══════════ -->
+<div class="screen" id="screen-bricolaje">
+  <div class="page-content">
+
+    <div class="page-title-card" style="border-color:#00796B;border-left-color:#00796B;box-shadow:-4px 4px 0 rgba(0,121,107,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(0,121,107,0.25);border-left-color:#00796B;background:#F0FAFA;box-shadow:-3px 3px 0 rgba(0,121,107,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#00796B;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <rect x="24" y="6" width="13" height="8" rx="3" fill="#00796B" opacity="0.15" stroke="#00796B" stroke-width="2"/>
+          <path d="M26 13 L12 34" stroke="#00796B" stroke-width="3" stroke-linecap="round"/>
+          <path d="M10 13 L30 33" stroke="#00796B" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+          <rect x="7" y="10" width="6" height="3.5" rx="1.2" fill="#00796B" opacity="0.5"/>
+        </svg>
+      </div>
+      <div><h1 style="color:#00796B;">Bricolaje del Hogar</h1><p>Trabajos cubiertos y excluidos</p></div>
+    </div>
+
+    <div class="section-card card-cobertura open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">✅</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <ul class="item-list">
+          <li><span class="li-icon">✅</span><span>Instalación de pletinas de terminación, embellecedores de unión entre dos suelos diferentes y protectores de esquina de pared.</span></li>
+          <li><span class="li-icon">✅</span><span>Instalación de tiradores, picaportes, manillas, muelles y pequeños pestillos en puertas interiores de madera. <strong style="color:#C62828;">Bisagras NO. Cajones NO.</strong></span></li>
+          <li><span class="li-icon">✅</span><span>Montaje e instalación de muebles en kit <strong>nuevos</strong>.</span></li>
+          <li><span class="li-icon">✅</span><span><strong>Pólizas Hogar Selección:</strong> Retirada de enseres a punto limpio.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🚫</span><h2>¿Qué no incluye?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>Instalación de bisagras o cajones.</span></li>
+          <li><span class="li-icon">❌</span><span>Mano de obra que exceda del tiempo límite de la cobertura.</span></li>
+          <li><span class="li-icon">❌</span><span>Coste del <strong>material</strong> necesario para el trabajo; cualquier <strong>material</strong> que suministre el reparador se cobrará por asistencia.</span></li>
+          <li><span class="li-icon">❌</span><span>Cualquier instalación cuando la fijación de los elementos a la superficie <strong>no garantice su estabilidad</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Casetas y construcciones auxiliares para jardín en materiales plásticos; no tienen consideración de muebles.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ TODO RIESGO ACCIDENTAL ═══════════ -->
+<div class="screen" id="screen-tra">
+  <div class="page-content">
+
+    <div class="page-title-card" style="border-color:#1565C0;border-left-color:#1565C0;box-shadow:-4px 4px 0 rgba(21,101,192,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(21,101,192,0.25);border-left-color:#1565C0;background:#EEF4FF;box-shadow:-3px 3px 0 rgba(21,101,192,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#1565C0;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <path d="M21 4 L8 10 L8 24 C8 32 15 37 21 39 C27 37 34 32 34 24 L34 10 Z" fill="#1565C0" opacity="0.12" stroke="#1565C0" stroke-width="2"/>
+          <path d="M14 22 L19 27 L28 15" stroke="#1565C0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div><h1 style="color:#1565C0;">Todo Riesgo Accidental</h1><p>Daños accidentales e imprevisibles</p></div>
+    </div>
+
+    <div class="section-card card-cobertura open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">✅</span><h2>¿Qué se cubre?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <div class="info-box"><span class="wi">🛡️</span><span>Se cubren los daños originados a los bienes asegurados por cualquier causa <strong>accidental</strong>, es decir, un hecho fortuito e imprevisible.</span></div>
+
+        <div class="poliza-item info">
+          <h3>💰 Franquicias</h3>
+          <p>Existen franquicias de <strong>60 €</strong> y de <strong>100 €</strong>.</p>
+          <p style="margin-top:6px;">Si el servicio indica que la franquicia es recuperable y la reparación supera los 100 €, se descuentan esos 100 € al asegurado.</p>
+          <p style="margin-top:6px;">Cuando el daño directo sea inferior a la franquicia, pero sea necesario aplicar daños estéticos, se asumirá siempre que la suma de ambos supere la franquicia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🚫</span><h2>¿Qué no se cubre?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>Cuando el coste de la reparación IVA incluido no supere la franquicia (en estos casos, ofrece asistencia).</span></li>
+          <li><span class="li-icon">❌</span><span>Hechos no accidentales.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños superficiales: arañazos, raspaduras, desconchados, salpicaduras, derrames de líquidos, rayados (salvo que deriven de otro siniestro mayor).</span></li>
+          <li><span class="li-icon">❌</span><span>Daños por uso inadecuado de productos no recomendados para mantenimiento o higiene — no tiene consideración de hecho accidental.</span></li>
+          <li><span class="li-icon">❌</span><span>Desperfectos por entrada de agua de lluvia a raíz de dejar una ventana o puerta abierta — no es hecho accidental.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ FENÓMENOS ATMOSFÉRICOS ═══════════ -->
+<div class="screen" id="screen-fenomenos">
+  <div class="page-content">
+
+    <div class="page-title-card" style="border-color:#E65100;border-left-color:#E65100;box-shadow:-4px 4px 0 rgba(230,81,0,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(230,81,0,0.25);border-left-color:#E65100;background:#FFF8F3;box-shadow:-3px 3px 0 rgba(230,81,0,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#E65100;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <path d="M14 22 Q14 13 22 13 Q30 13 30 22" stroke="#E65100" stroke-width="2" fill="none"/>
+          <ellipse cx="22" cy="24" rx="13" ry="7" fill="#E65100" opacity="0.12" stroke="#E65100" stroke-width="2"/>
+          <path d="M15 31 L13 36" stroke="#E65100" stroke-width="2" stroke-linecap="round"/>
+          <path d="M22 31 L20 36" stroke="#E65100" stroke-width="2" stroke-linecap="round"/>
+          <path d="M29 31 L27 36" stroke="#E65100" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div><h1 style="color:#E65100;">Fenómenos Atmosféricos</h1><p>Viento, lluvia, pedrisco y nieve</p></div>
+    </div>
+
+    <div class="warn-box"><span class="wi">📋</span><div>La cobertura la tiene que dar el <strong>departamento</strong> e indicártelo en el servicio o expediente.</div></div>
+
+    <div class="section-card card-cobertura open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">✅</span><h2>¿Qué se cubre?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <div class="step-card">
+          <div class="step-num" style="background:#E65100;">💨</div>
+          <div class="step-content">
+            <h3>Viento</h3>
+            <p>Impacto de objetos proyectados por el mismo. Velocidades superiores a <strong>80 km/hora</strong>.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num" style="background:#1565C0;">🌧️</div>
+          <div class="step-content">
+            <h3>Lluvia</h3>
+            <p>Precipitación superior a <strong>40 l/m²</strong> y el daño sea consecuencia de esta intensidad.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num" style="background:#00796B;">🌨️</div>
+          <div class="step-content">
+            <h3>Pedrisco / Granizo / Nieve</h3>
+            <p>Sea cual sea su intensidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🚫</span><h2>¿Qué no se cubre?</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <p style="font-size:13.5px;color:var(--text-light);margin-bottom:10px;">Daños que se deriven de defectos o falta de mantenimiento:</p>
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>Filtraciones a través de carpinterías exteriores.</span></li>
+          <li><span class="li-icon">❌</span><span>Grietas o deterioro de fachadas o cubiertas.</span></li>
+          <li><span class="li-icon">❌</span><span>Goteras, filtraciones, humedades, condensaciones u oxidaciones <strong>de forma paulatina</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños causados por heladas.</span></li>
+          <li><span class="li-icon">❌</span><span>Elementos constructivos de exterior con materiales no aptos para la intemperie.</span></li>
+          <li><span class="li-icon">❌</span><span>Muebles de jardín y bienes depositados al aire libre, aunque estén protegidos por lonas, plásticos o en construcciones abiertas.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════ TARIFA ═══════════ -->
+<div class="screen" id="screen-tarifa">
+  <div class="page-content">
+
+    <div class="page-title-card" style="border-color:#F57F17;border-left-color:#F57F17;box-shadow:-4px 4px 0 rgba(245,127,23,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(245,127,23,0.25);border-left-color:#F57F17;background:#FFFCF0;box-shadow:-3px 3px 0 rgba(245,127,23,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#F57F17;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <rect x="8" y="6" width="26" height="30" rx="5" fill="#F57F17" opacity="0.10" stroke="#F57F17" stroke-width="2"/>
+          <path d="M14 15 L28 15" stroke="#F57F17" stroke-width="2" stroke-linecap="round"/>
+          <path d="M14 21 L28 21" stroke="#F57F17" stroke-width="2" stroke-linecap="round"/>
+          <path d="M14 27 L21 27" stroke="#F57F17" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="29" cy="29" r="7" fill="#F57F17" opacity="0.20" stroke="#F57F17" stroke-width="1.8"/>
+          <path d="M29 25.5 L29 28.5 L31 30" stroke="#F57F17" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div><h1 style="color:#F57F17;">Aplicación de la Tarifa</h1><p>Familias y códigos de trabajo</p></div>
+    </div>
+
+    <div class="section-card card-info open" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🪵</span><h2>Trabajos relacionados con MUEBLES DE COCINA</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <div class="step-card">
+          <div class="step-num green">1</div>
+          <div class="step-content">
+            <h3>Primer trabajo</h3>
+            <p>Se aplica el código principal de la tarifa para el tipo de trabajo específico.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">+</div>
+          <div class="step-content">
+            <h3>Segundo trabajo en adelante</h3>
+            <p>Si en la misma intervención realizas más de un trabajo de este tipo, para el <strong>segundo trabajo</strong> y los siguientes se utiliza el código de sustitución <strong>Adicional</strong>.</p>
+            <span class="tag blue">📋 Código Adicional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card card-neutral" onclick="toggleCard(this)">
+      <div class="section-card-header"><span style="font-size:17px">🔧</span><h2>Trabajos NO relacionados con MUEBLES DE COCINA</h2><span class="chevron">▼</span></div>
+      <div class="section-card-body">
+        <div class="step-card">
+          <div class="step-num green">1</div>
+          <div class="step-content">
+            <h3>Primer trabajo</h3>
+            <p>Se aplica el código principal de la tarifa según el tipo de trabajo.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">+</div>
+          <div class="step-content">
+            <h3>Segundo trabajo en adelante</h3>
+            <p>Si en una misma intervención haces varios trabajos distintos: también, a partir del <strong>segundo trabajo</strong>, se utiliza el código <strong>Adicional</strong>.</p>
+            <span class="tag blue">📋 Código Adicional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box"><span class="wi">💡</span><span>La tarifa consta de <strong>dos familias</strong>: trabajos relacionados con muebles de cocina y trabajos NO relacionados con muebles de cocina. En ambas, a partir del segundo trabajo se usa el código Adicional.</span></div>
+
+  </div>
+</div>
+
+
+<script>
+  const stack = [];
+  let currentScreen = 'screen-home';
+
+  function goTo(screenId) {
+    stack.push(currentScreen);
+    showScreen(screenId);
+  }
+
+  function goBack() {
+    if (!stack.length) return;
+    showScreen(stack.pop());
+  }
+
+  function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
+    currentScreen = screenId;
+    window.scrollTo(0, 0);
+  }
+
+  function toggleCard(card) {
+    card.classList.toggle('open');
+  }
+
+  showScreen('screen-home');
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./sw.js')
+        .then(function(reg) { console.log('[SW] Registrado:', reg.scope); })
+        .catch(function(err) { console.warn('[SW] Error:', err); });
+    });
+  }
+</script>
+</body>
+</html>
