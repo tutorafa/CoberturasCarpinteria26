@@ -433,7 +433,7 @@
     </div>
     <div style="padding:18px 20px 20px;">
       <div style="margin-bottom:14px;display:flex;gap:13px;align-items:flex-start;">
-        <span style="font-size:22px;flex-shrink:0;">🤖</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;margin-top:2px"><path d="M17.523 15.341a5.03 5.03 0 01-5.03 5.03 5.03 5.03 0 01-5.03-5.03V9.847h10.06v5.494zm-8.388-9.2l-1.04-1.8a.307.307 0 00-.421-.113.307.307 0 00-.112.421l1.06 1.836A6.27 6.27 0 0112.003 6a6.27 6.27 0 013.381.485l1.06-1.836a.307.307 0 00-.112-.42.307.307 0 00-.422.112l-1.04 1.8A6.23 6.23 0 0112.003 6a6.23 6.23 0 01-2.868.141zM9.735 7.93a.612.612 0 110 1.224.612.612 0 010-1.224zm4.53 0a.612.612 0 110 1.224.612.612 0 010-1.224zM5.46 9.847A1.54 1.54 0 003.923 11.386v3.574a1.54 1.54 0 001.538 1.538 1.54 1.54 0 001.538-1.538v-3.574A1.54 1.54 0 005.46 9.847zm13.08 0a1.54 1.54 0 011.538 1.539v3.574a1.54 1.54 0 01-1.538 1.538 1.54 1.54 0 01-1.538-1.538v-3.574a1.54 1.54 0 011.538-1.539zm-5.155 9.461v2.615a1.077 1.077 0 01-1.077 1.077 1.077 1.077 0 01-1.077-1.077v-2.615h2.154zm-3.692 0v2.615a1.077 1.077 0 01-1.077 1.077 1.077 1.077 0 01-1.077-1.077v-2.615h2.154z" fill="#3DDC84"/></svg>
         <div><div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#1A2330;margin-bottom:3px;">Android (Chrome)</div>
         <div style="font-size:13px;color:#4A5568;line-height:1.5;">Abre la URL → menú ⋮ → <em>"Añadir a pantalla de inicio"</em></div></div>
       </div>
@@ -780,7 +780,22 @@
       <div><h1 style="color:#E65100;">Fenómenos Atmosféricos</h1><p>Viento, lluvia, pedrisco y nieve</p></div>
     </div>
 
-    <div class="warn-box"><span class="wi">📋</span><div>La cobertura la tiene que dar el <strong>departamento</strong> e indicártelo en el servicio o expediente.</div></div>
+    <div class="aviso-card" style="margin-top:0;margin-bottom:14px;">
+      <div style="width:100%;">
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;">
+          <span style="font-size:18px;flex-shrink:0;margin-top:1px;">🔍</span>
+          <p style="font-size:14px;color:var(--yellow-text);line-height:1.6;font-weight:600;">Si no intervino previamente un reparador de tejados, verificamos que la causa de entrada de agua es por <strong>fuertes lluvias o tormentas</strong> y descontamos el servicio informando.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;">
+          <span style="font-size:18px;flex-shrink:0;margin-top:1px;">📋</span>
+          <p style="font-size:14px;color:var(--yellow-text);line-height:1.6;font-weight:600;">En la descripción del Expediente indicará la <strong>Causa: Lluvia/tormentas, etc.</strong> y será el departamento quien dé la cobertura y te lo pondrá en tu servicio.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <span style="font-size:18px;flex-shrink:0;margin-top:1px;">⚠️</span>
+          <p style="font-size:14px;color:var(--yellow-text);line-height:1.6;font-weight:600;">Si existe <strong>falta de mantenimiento</strong>, deterioro paulatino o defectos propios <strong style="color:var(--red);">no tendría cobertura</strong>.</p>
+        </div>
+      </div>
+    </div>
 
     <div class="section-card card-cobertura open" onclick="toggleCard(this)">
       <div class="section-card-header"><span style="font-size:17px">✅</span><h2>¿Qué se cubre?</h2><span class="chevron">▼</span></div>
@@ -789,20 +804,20 @@
           <div class="step-num" style="background:#E65100;">💨</div>
           <div class="step-content">
             <h3>Viento</h3>
-            <p>Viento e impacto de objetos proyectados por este con velocidades superiores a <strong>80 km/hora</strong>.</p>
+            <p>Viento e impacto de objetos proyectados por el mismo, a velocidades superiores a <strong>80 km/hora</strong>.</p>
           </div>
         </div>
         <div class="step-card">
           <div class="step-num" style="background:#1565C0;">🌧️</div>
           <div class="step-content">
             <h3>Lluvia</h3>
-            <p>Precipitación superior a <strong>40 l/m²</strong> y el daño sea consecuencia de esta intensidad.</p>
+            <p>Siempre que se registre una precipitación superior a <strong>40 l/m²</strong> y el daño provocado sea consecuencia de esta intensidad de lluvia.</p>
           </div>
         </div>
         <div class="step-card">
           <div class="step-num" style="background:#00796B;">🌨️</div>
           <div class="step-content">
-            <h3>Pedrisco / Granizo / Nieve</h3>
+            <h3>Pedrisco, granizo o Nieve</h3>
             <p>Sea cual sea su intensidad.</p>
           </div>
         </div>
